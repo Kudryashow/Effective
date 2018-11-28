@@ -10,3 +10,4 @@ cd /www/vhosts/sync/
 sudo cp project.local.conf /etc/nginx/conf.d/project.local.conf
 cd /etc/nginx/conf.d
 sudo yum install -y php-fpm
+sudo systemctl start nginx
