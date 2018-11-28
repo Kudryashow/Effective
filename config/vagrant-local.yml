@@ -1,0 +1,7 @@
+server:
+  name: testserver
+  ram: 1024
+  cpus: 2
+  ip: 192.168.83.20
+  syncpath: "/www/vhosts/sync"
+  bridge_interface: enp2s0
