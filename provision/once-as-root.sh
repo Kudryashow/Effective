@@ -8,4 +8,5 @@ yum-config-manager --enable remi-php71
 yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlsudo cp sync/project.local /etc/nginx/sites-available/project.local
 cp /www/vhosts/sync/sync/project.local.conf /etc/nginx/conf.d/project.local.conf
 yum install -y php-fpm
-systemctl enable nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
