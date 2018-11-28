@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
     v.name = set['server']['name']
   end
 
-  config.vm.synced_folder "./sync", set['server']['syncpath'], owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder ".", set['server']['syncpath'], owner: 'vagrant', group: 'vagrant'
   config.vm.network "private_network", ip: set['server']['ip']
   config.vm.network 'public_network', bridge: set['server']['bridge_interface']
 
