@@ -1,1 +1,0 @@
-{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/user/tasks/task2","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/www/vhosts/sync":{"owner":"vagrant","group":"vagrant","guestpath":"/www/vhosts/sync","hostpath":"/home/user/tasks/task2/sync","disabled":false,"__vagrantfile":true}}}
