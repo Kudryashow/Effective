@@ -1,1 +1,2 @@
-@hourly /home/user/backup.sh
+# to crontab -e
+* * * * * /bin/bash /home/user/backup.sh>~/bull 2>&1

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
+#executable script for cron path: ~/backup.sh
 
-scp vagrant@192.168.83.20:~/backup.tar.gz /backup.tar.gz
+tar -cvpzf backup.tar.gz /etc
+scp ~/backup.tar.gz vagrant@192.168.83.20:~/backup.tar.gz
