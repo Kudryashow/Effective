@@ -10,3 +10,7 @@ cp /www/vhosts/sync/sync/project.local.conf /etc/nginx/conf.d/project.local.conf
 yum install -y php-fpm
 sudo systemctl enable nginx
 sudo systemctl start nginx
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+restorecon -r -vv .ssh/authorized_keys
+sudo cat /www/vhosts/sync/config/id_rsa.pub >> ~/.ssh/authorized_keys

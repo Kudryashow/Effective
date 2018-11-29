@@ -1,10 +1,3 @@
-!#/bin/bash
+#!/usr/bin/env bash
 
-if [-n $1]
-then 
-to=$1
-else to='/home/user'
-fi
-
-sudo tar czf /backup.tar.gz --exclude=/backup.tar.gz --exclude=/home --exclude=/media --exclude=/dev --exclude=/mnt --exclude=/proc --exclude=/sys --exclude=/tmp --exclude=/usr --exclude=/var /
-scp /backup.tar.gz to
+scp vagrant@192.168.83.20:~/backup.tar.gz /backup.tar.gz
