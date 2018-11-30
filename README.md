@@ -1,0 +1,2 @@
+# Effective
+Virtual machine setting
