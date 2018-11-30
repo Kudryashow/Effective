@@ -1,2 +1,0 @@
-# to crontab -e
-* * * * * /bin/bash /home/user/backup.sh>~/bull 2>&1

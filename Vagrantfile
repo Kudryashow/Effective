@@ -11,11 +11,11 @@ Vagrant.configure('2') do |config|
     v.name = set['server']['name']
   end
 
-  config.vm.synced_folder ".", set['server']['syncpath'], owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder "project.local", set['server']['syncpath'], owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder "config", "/home/vagrant/project.local", owner: 'vagrant', group: 'vagrant'
+
   config.vm.network "private_network", ip: set['server']['ip']
   config.vm.network 'public_network', bridge: set['server']['bridge_interface']
-
-  
 
   config.vm.provision "shell", path: "provision/once-as-root.sh"
 end
