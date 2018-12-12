@@ -43,12 +43,13 @@ sudo yum install wget -y
 wget -O ~/xdebug-2.4.0.tgz http://xdebug.org/files/xdebug-2.4.0.tgz
 tar -xvzf ~/xdebug-2.4.0.tgz
 cd ~/xdebug-2.4.0
-sudo yum install php-devel
+sudo yum install php-devel -y
 phpize
 ./configure
 make
 sudo cp modules/xdebug.so /usr/lib64/php/modules/xdebug.so
-sudo setenforce 0
+cd
 sudo mv /etc/php.ini /etc/php.ini.backup
-sudo cp /home/vagrant/project.local/php.ini /etc/php.ini
-
+sudo cp /home/vagrant/project.local/php.ini.back /etc/php.ini
+sudo systemctl restart nginx php-fpm
+sudo setenforce 0

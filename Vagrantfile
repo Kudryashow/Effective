@@ -19,4 +19,3 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision "shell", path: "provision/once-as-root.sh"
 end
-/
