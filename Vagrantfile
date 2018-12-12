@@ -2,7 +2,7 @@ require 'yaml'
 
 Vagrant.configure('2') do |config|
 
-  config.vm.box = config.vm.box = "centos/7"
+  config.vm.box = config.vm.box = "generic/centos7"
   set = YAML.load_file('config/vagrant-local.yml')
 
   config.vm.provider "virtualbox" do |v|
@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
     v.name = set['server']['name']
   end
 
-  config.vm.synced_folder "project.local", set['server']['syncpath'], owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder "app", "/home/vagrant/projects/project.local", owner: 'vagrant', group: 'vagrant', mount_options: ["dmode=777", "fmode=777"]
   config.vm.synced_folder "config", "/home/vagrant/project.local", owner: 'vagrant', group: 'vagrant'
 
   config.vm.network "private_network", ip: set['server']['ip']
