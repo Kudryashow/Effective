@@ -43,7 +43,7 @@ sudo yum install wget -y
 wget -O ~/xdebug-2.4.0.tgz http://xdebug.org/files/xdebug-2.4.0.tgz
 tar -xvzf ~/xdebug-2.4.0.tgz
 cd ~/xdebug-2.4.0
-sudo yum install php-devel -y
+sudo yum install -y php-devel
 phpize
 ./configure
 make
