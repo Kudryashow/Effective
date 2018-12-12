@@ -10,14 +10,8 @@
  * Date: 11.12.18
  * Time: 16:14
  */
-echo 'Hello world ';
-echo '123';
-echo 'debugger';
-//phpinfo();
-//xdebug.remote_autostart = on
-//xdebug.remote_enable = on
-//xdebug.remote_connect_back = on
-//
+echo 'Hello world'.PHP_EOL;
+echo 'debugging ...';
 //xdebug.remote_host = 192.168.83.20
 //xdebug.remote_port = 9001
 //xdebug.remote_handler = dbgp

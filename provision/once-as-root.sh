@@ -3,9 +3,12 @@ info "Setting reps + update yum"
 sudo yum update -y
 sudo yum install -y epel-release yum-utils
 sudo yum install -y nginx
-sudo yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.
 info "DONE !"
 info "Install php ....."
+sudo rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum -y install yum-utils
+sudo yum update -y
+sudo yum -y install php
 sudo yum-config-manager --enable remi-php71
 sudo yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlsudo cp sync/project.local /etc/nginx/sites-available/project.local
 info "DONE !"
@@ -36,6 +39,7 @@ sudo yum install mysql-server -y
 sudo systemctl start mysqld
 sudo mysql_secure_installation
 sudo cat /var/log/www.access.log
+sudo yum install wget -y
 wget -O ~/xdebug-2.4.0.tgz http://xdebug.org/files/xdebug-2.4.0.tgz
 tar -xvzf ~/xdebug-2.4.0.tgz
 cd ~/xdebug-2.4.0
@@ -43,6 +47,8 @@ sudo yum install php-devel
 phpize
 ./configure
 make
-cp modules/xdebug.so /usr/lib64/php/20160303
+sudo cp modules/xdebug.so /usr/lib64/php/modules/xdebug.so
 sudo setenforce 0
+sudo mv /etc/php.ini /etc/php.ini.backup
+sudo cp /home/vagrant/project.local/php.ini /etc/php.ini
 

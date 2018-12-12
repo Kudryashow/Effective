@@ -2,7 +2,7 @@ require 'yaml'
 
 Vagrant.configure('2') do |config|
 
-  config.vm.box = config.vm.box = "generic/centos7"
+  config.vm.box = config.vm.box = "centos/7"
   set = YAML.load_file('config/vagrant-local.yml')
 
   config.vm.provider "virtualbox" do |v|
@@ -19,3 +19,4 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision "shell", path: "provision/once-as-root.sh"
 end
+/
