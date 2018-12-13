@@ -2,8 +2,6 @@
 
 namespace application\core;
 
-use mysql_xdevapi\Exception;
-
 class Router
 {
 
@@ -38,25 +36,22 @@ class Router
 
     public function run()
     {
-        if ($this->match()) {
-            var_dump($this);
-//            application\controllers\MainController
-            $path = 'application\\controllers\\\\'.ucfirst($this->params['controller']).'Controller.php';
-            echo $path;
 
+        if ($this->match()) {
+            $path = 'application\controllers\\'.ucfirst($this->params['controller']).'Controller';
             if (class_exists($path)) {
                 $action = $this->params['action'].'Action';
                 if (method_exists($path, $action)) {
-                    $controller = new $path();
+                    $controller = new $path($this->params);
                     $controller->$action();
                 } else {
-                    echo 'ERROR: action '.$action.' not found !';
+                    echo 'ERROR: action <b>'.$action.'</b> not found !';
                 }
             } else {
-                echo 'ERROR: controller '.$path.' not found !';
+                echo 'ERROR: controller <b>'.$path.'</b> not found !';
             }
         } else {
-            echo 'Not found <b>404</b>';
+            echo 'Route not found <b>404</b>';
         }
     }
 }
