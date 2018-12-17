@@ -7,12 +7,17 @@
  */
 
 namespace application\controllers;
+use application\core\Controller;
 
 
-class MainController
+class MainController extends Controller
 {
     public function indexAction()
     {
-        echo 'Hello world !';
+        $result = $this->model->getNews();
+        $vars = [
+            'news' => $result,
+        ];
+        $this->view->render('Main page', $vars);
     }
 }

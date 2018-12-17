@@ -1,15 +1,20 @@
 <?php
 namespace application\controllers;
-
 use application\core\Controller;
-
 class AccountController extends Controller
 {
+    public function before() {
+        $this->view->layout = 'custom';
+    }
+
     public function loginAction()
     {
-        echo 'Index page';
+        if(!empty($_POST)) {
+            $this->view->redirect('/');
+        }
+        $this->view->render('Sign');
     }
     public function registerAction() {
-        echo 'Register page';
+        $this->view->render('Register');
     }
 }
