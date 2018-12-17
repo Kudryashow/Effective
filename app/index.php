@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 require 'vendor/autoload.php';
 require 'application/lib/Dev.php';
 
