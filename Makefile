@@ -5,6 +5,9 @@ refresh:
 		vagrant halt
 		vagrant up
 		vagrant ssh
-remake:
+rmk:
 		vagrant destroy -f
-		vagrant up --provision
+		vagrant up
+		vagrant halt
+		vagrant up
+		vagrant ssh

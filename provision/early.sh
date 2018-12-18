@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-#!/bin/bash
 info "Setting reps + update yum"
-yum update -y
+sudo yum update -y
 yum install -y epel-release yum-utils
 yum install -y nginx
 info  "Install repositories"
@@ -45,17 +44,17 @@ chmod 777 /var/run/php-fpm/php-fpm.sock
 info "Host enabling ....."
 mv /etc/hosts /etc/hosts.backup
 cp /home/vagrant/project.local/hosts.txt /etc/hosts
-#info "MySQL installing ....."
-#sudo yum install wget -y
-#sudo wget http://repo.mysql.com/mysql57-community-release-el7.rpm
-#sudo rpm -ivh mysql57-community-release-el7.rpm
-#sudo yum update -y
-#sudo yum install mysql-server -y
-#sudo systemctl start mysqld
-#sudo mv /etc/my.cnf /etc/my.cnf.backup
-#sudo cp /home/vagrant/project.local/my.cnf /etc/my.cnf
-#yum install php-pdo -y
-#yum install php-pdo_mysql -y
+info "MySQL installing ....."
+sudo yum install wget -y
+sudo wget http://repo.mysql.com/mysql57-community-release-el7.rpm
+sudo rpm -ivh mysql57-community-release-el7.rpm
+sudo yum update -y
+sudo yum install mysql-server -y
+sudo systemctl start mysqld
+sudo mv /etc/my.cnf /etc/my.cnf.backup
+sudo cp /home/vagrant/project.local/my.cnf /etc/my.cnf
+sudo yum install php-pdo -y
+sudo yum install php-pdo_mysql -y
 
 yum install -y php-xdebug
 systemctl restart php-fpm
