@@ -6,8 +6,8 @@
  * Time: 13:59
  */
 return [
-    'host' => '127.0.0.1',
-    'name' => 'user',
+    'host' => '192.168.83.20',
+    'name' => 'users',
     'user' => 'vagrant',
     'password' => 'qwerty',
 ];

@@ -5,3 +5,5 @@
     <p><?php echo $head['text']; ?></p>
     <hr>
 <?php endforeach; ?>
+<?php
+echo 123;

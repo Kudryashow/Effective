@@ -2,7 +2,9 @@ require 'yaml'
 
 Vagrant.configure('2') do |config|
 
-  config.vm.box = config.vm.box = "centos/7"
+  config.vm.box = "centos7-1703-dev"
+  config.vm.box_url = "http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1703_01.VirtualBox.box"
+  config.vbguest.auto_update = true
   set = YAML.load_file('config/vagrant-local.yml')
 
   config.vm.provider "virtualbox" do |v|
