@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 14.12.18
- * Time: 13:59
- */
+
 return [
     'host' => '192.168.83.20',
-    'name' => 'users',
+    'name' => 'mvc',
     'user' => 'vagrant',
-    'password' => 'qwerty',
+    'password' =>
+        'korean USA drip - [ YELP fruit - / fruit visa QUEEN ] 5 QUEEN :',
 ];

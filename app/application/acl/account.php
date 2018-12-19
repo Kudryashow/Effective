@@ -8,9 +8,7 @@ return [
     'authorize' => [
     ],
     'guest' => [
-//
     ],
     'admin' => [
-//
     ],
 ];

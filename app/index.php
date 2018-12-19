@@ -1,10 +1,9 @@
 <?php
-require 'vendor/autoload.php';
-require 'application/lib/Dev.php';
 
+require 'vendor/autoload.php';
 use application\core\Router;
+use application\services\ConfigService;
 
 session_start();
-phpinfo();
 $router = new Router;
 $router->run();

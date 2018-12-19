@@ -7,7 +7,10 @@
  */
 
 namespace application\core;
-
+/**
+ * Class Controller
+ * @package application\core
+ */
 abstract class Controller
 {
 
@@ -16,6 +19,10 @@ abstract class Controller
     public $model;
     public $acl;
 
+    /**
+     * Controller constructor.
+     * @param $route
+     */
     public function __construct($route)
     {
         $this->route = $route;
@@ -26,6 +33,10 @@ abstract class Controller
         $this->model = $this->loadModel($route['controller']);
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     public function loadModel($name)
     {
         $path = 'application\models\\'.ucfirst($name);
@@ -34,21 +45,28 @@ abstract class Controller
         }
     }
 
+    /**
+     * @return bool
+     */
     public function checkAcl()
     {
-        $this->acl = require 'application/acl/'.$this->route['controller'].'.php';
+        $this->acl = include 'application/acl/'.$this->route['controller'].'.php';
         if ($this->isAcl('all')) {
             return true;
-        } elseif (isset($_SESSION['authorize']['id']) and $this->isAcl('authorize')) {
+        } elseif (isset($_SESSION['authorize']['id']) && $this->isAcl('authorize')) {
             return true;
-        } elseif (!isset($_SESSION['authorize']['id']) and $this->isAcl('guest')) {
+        } elseif (!isset($_SESSION['authorize']['id']) && $this->isAcl('guest')) {
             return true;
-        } elseif (isset($_SESSION['admin']) and $this->isAcl('admin')) {
+        } elseif (isset($_SESSION['admin']) && $this->isAcl('admin')) {
             return true;
         }
         return false;
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     public function isAcl($key)
     {
         return in_array($this->route['action'], $this->acl[$key]);

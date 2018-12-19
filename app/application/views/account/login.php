@@ -1,9 +1,14 @@
+<?php ?>
 <h1>Sign in _</h1>
 <form>
     <p>Login</p>
-    <input type="text">
+    <label>
+        <input type="text">
+    </label>
     <p>Password</p>
-    <input type="text">
+    <label>
+        <input type="text">
+    </label>
     <b>
         <button>Sign in</button>
     </b>

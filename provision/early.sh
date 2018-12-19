@@ -62,10 +62,16 @@ sudo setenforce 0
 
 #grep 'temporary password' /var/log/mysqld.log
 
-#CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'qwerty';
+#CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'SKYPE 6 usa 8 9 GOLF ` / ! 5 GOLF VISA jack / ' =';
 #GRANT ALL PRIVILEGES ON * . * TO 'vagrant'@'localhost';
-#CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'qwerty';
+#CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'SKYPE 6 usa 8 9 GOLF ` / ! 5 GOLF VISA jack / ' =';
 #GRANT ALL PRIVILEGES ON *.* TO vagrant@'%' IDENTIFIED BY 'qwerty';
 # FLUSH PRIVILEGES;
-
+CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'korean USA drip - [ YELP fruit - / fruit visa QUEEN ] 5 QUEEN :';
+CREATE USER 'vagrant'@'%' IDENTIFIED BY 'korean USA drip - [ YELP fruit - / fruit visa QUEEN ] 5 QUEEN :';
+GRANT ALL ON *.* TO 'vagrant'@'localhost';
+GRANT ALL ON *.* TO 'vagrant'@'%';
 #sudo mysql_secure_installation
+# CHECK:   |mysql -h project.local -u vagrant -p
+# ROOT PWD:|YELP 9 APPLE / 3 korean 5 bestbuy APPLE ! ] hulu QUEEN ^ APPLE egg
+# VAGRANT: |korean USA drip - [ YELP fruit - / fruit visa QUEEN ] 5 QUEEN :

@@ -34,4 +34,20 @@ info "Host enabling ....."
 mv /etc/hosts /etc/hosts.backup
 cp /home/vagrant/project.local/hosts.txt /etc/hosts
 systemctl restart php-fpm
+info "MySQL installing..."
+yum install wget -y
+wget http://repo.mysql.com/mysql57-community-release-el7.rpm
+rpm -ivh mysql57-community-release-el7.rpm
+yum update -y
+yum install mysql-server -y
+systemctl start mysqld
+mv /etc/my.cnf /etc/my.cnf.backup
+cp /home/vagrant/project.local/my.cnf /etc/my.cnf
+systemctl restart mysqld
+ln -s /data/mysql_datadir/mysql.sock /var/lib/mysql/mysql.sock
+grep 'temporary password' /var/log/mysqld.log
+info "Composer installing -->"
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
 sudo setenforce 0

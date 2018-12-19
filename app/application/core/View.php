@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 13.12.18
- * Time: 17:58
- */
 
 namespace application\core;
-
 
 class View
 {
@@ -27,9 +20,9 @@ class View
         extract($vars);
         if (file_exists($path)) {
             ob_start();
-            require $path;
+            include $path;
             $content = ob_get_clean();
-            require 'application/views/layouts/'.$this->layout.'.php';
+            include 'application/views/layouts/'.$this->layout.'.php';
         }
 
     }
@@ -43,19 +36,23 @@ class View
     public static function errorCode($code)
     {
         http_response_code($code);
-        $path = 'application/views/errors/'.$code.'.php';
+        $root = __DIR__.'/../application/views/errors/';
+        $resolve = '.php';
+        $path = $root.$code.$resolve;
 
-        if(file_exists($path)) {
-            require $path;
+        if (file_exists($path)) {
+            include $path;
         } else {
             exit('Error:: '.$path.' is empty');
         }
         exit();
     }
+
     public function message($status, $message)
     {
         exit(json_encode(['status' => $status, 'message' => $message]));
     }
+
     public function location($url)
     {
         exit(json_encode(['url' => $url]));

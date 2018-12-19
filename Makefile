@@ -6,8 +6,9 @@ refresh:
 		vagrant up
 		vagrant ssh
 rmk:
-		vagrant destroy -f
-		vagrant up
-		vagrant halt
-		vagrant up
-		vagrant ssh
+		vagrant destroy
+        vagrant up
+        vagrant ssh
+        sudo yum update -y && sudo yum install -y kernel kernel-devel
+        exit
+        vagrant reload —provision
