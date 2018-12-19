@@ -8,8 +8,8 @@ class Db
 
     public function __construct()
     {
-        $config = new ConfigService;
-        $settings = $config->getConfig('db');
+        $configuration = new ConfigService;
+        $settings = $configuration->getConfig('db');
         $dsn = 'mysql:host='.$settings['host'].';name='.$settings['name'].'';
         $this->db = new \PDO($dsn, $settings['user'], $settings['password']);
     }

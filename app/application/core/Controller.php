@@ -7,10 +7,8 @@
  */
 
 namespace application\core;
-/**
- * Class Controller
- * @package application\core
- */
+use application\services\AclService;
+
 abstract class Controller
 {
 
@@ -19,10 +17,6 @@ abstract class Controller
     public $model;
     public $acl;
 
-    /**
-     * Controller constructor.
-     * @param $route
-     */
     public function __construct($route)
     {
         $this->route = $route;
@@ -33,41 +27,36 @@ abstract class Controller
         $this->model = $this->loadModel($route['controller']);
     }
 
-    /**
-     * @param $name
-     * @return mixed
-     */
     public function loadModel($name)
     {
         $path = 'application\models\\'.ucfirst($name);
         if (class_exists($path)) {
             return new $path;
         }
+        return new \Exception($path.' not exist');
     }
 
-    /**
-     * @return bool
-     */
     public function checkAcl()
     {
-        $this->acl = include 'application/acl/'.$this->route['controller'].'.php';
-        if ($this->isAcl('all')) {
+        $isUser = isset($_SESSION['authorize']['id']);
+        $isAdmin = isset($_SESSION['admin']);
+
+        $acl = new AclService();
+        $this->acl = $acl->getConfig($this->route['controller']);
+
+        if ($this->hasAccess('all')) {
             return true;
-        } elseif (isset($_SESSION['authorize']['id']) && $this->isAcl('authorize')) {
+        } elseif ($isUser && $this->hasAccess('authorize')) {
             return true;
-        } elseif (!isset($_SESSION['authorize']['id']) && $this->isAcl('guest')) {
+        } elseif (!$isUser && $this->hasAccess('guest')) {
             return true;
-        } elseif (isset($_SESSION['admin']) && $this->isAcl('admin')) {
+        } elseif ($isAdmin && $this->hasAccess('admin')) {
             return true;
         }
         return false;
     }
 
-    /**
-     * @param $key
-     * @return bool
-     */
-    public function isAcl($key)
+    public function hasAccess($key)
     {
         return in_array($this->route['action'], $this->acl[$key]);
     }
