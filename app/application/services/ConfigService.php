@@ -9,24 +9,12 @@
 namespace application\services;
 
 
-class ConfigService
+use application\core\Service;
+//use application\lib\Dev;
+
+class ConfigService extends Service
 {
     private $_config = [];
-
-    public function __construct()
-    {
-        $files = ['db', 'routes'];
-
-        foreach ($files as $name) {
-            $this->_config[$name] = $this->setConfig($name);
-        }
-    }
-
-    private function setConfig($name)
-    {
-        $arr = require __DIR__ . '/../config/' . $name . '.php';
-        return $arr;
-    }
 
     public function getConfig($name)
     {

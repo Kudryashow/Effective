@@ -2,7 +2,7 @@
 
 namespace application\core;
 
-use application\services\ConfigService;
+//use application\services\ConfigService;
 
 class Router
 {
@@ -10,11 +10,11 @@ class Router
     protected $_routes = [];
     protected $_params = [];
 
-    function __construct()
+    function __construct($routes)
     {
-        $config = new ConfigService;
-        $arr = $config->getConfig('routes');
-        foreach ($arr as $key => $value) {
+//        $config = new ConfigService;
+//        $arr = $config->getConfig('routes');
+        foreach ($routes as $key => $value) {
             $this->add($key, $value);
         }
     }

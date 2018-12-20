@@ -14,4 +14,23 @@ class Dev
         echo '</pre>';
         exit;
     }
+
+    static function extractFiles($dir)
+    {
+        $result = array();
+
+        $currentDir = scandir($dir);
+        foreach ($currentDir as $key => $value) {
+            if (!in_array($value, array(".", ".."))) {
+                if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                    $result[$value] =
+                        self::extractFiles($dir.DIRECTORY_SEPARATOR.$value);
+                } else {
+                    $result[] = $value;
+                }
+            }
+        }
+
+        return $result;
+    }
 }

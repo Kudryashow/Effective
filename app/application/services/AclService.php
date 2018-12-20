@@ -8,25 +8,11 @@
 
 namespace application\services;
 
+use application\core\Service;
 
-class AclService
+class AclService extends Service
 {
     private $_config = [];
-
-    public function __construct()
-    {
-        $files = ['account', 'main'];
-
-        foreach ($files as $name) {
-            $this->_config[$name] = $this->setConfig($name);
-        }
-    }
-
-    private function setConfig($name)
-    {
-        $arr = include 'application/acl/'.$name.'.php';
-        return $arr;
-    }
 
     public function getConfig($name)
     {

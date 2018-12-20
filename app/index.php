@@ -1,8 +1,11 @@
 <?php
 
 require 'vendor/autoload.php';
-use application\core\Router;
+//use application\core\Router;
 
 session_start();
-$router = new Router;
-$router->run();
+$config = new \application\services\ConfigService;
+//$router = new Router;
+$app = new \application\core\Application();
+//$router->run();
+$app->run();
