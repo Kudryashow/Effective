@@ -4,16 +4,15 @@ sudo yum update -y
 yum install -y epel-release yum-utils
 yum install -y nginx
 info  "Install repositories"
-yum install -y wget > /dev/null
-wget -q https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-wget -q http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-
-rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
-yum install yum-utils  > /dev/null
-yum-config-manager --enable remi-php71 > /dev/null
+sudo yum install -y wget > /dev/null
+sudo wget -q https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo wget -q http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+sudo yum install yum-utils  > /dev/null
+sudo yum-config-manager --enable remi-php71 > /dev/null
 
 info "Install php"
-yum install -y php php-mbstring php-bcmath php-mysqlnd php-pecl-imagick php-zip php-memcached php-soap php-opcache php-pecl-xdebug php-pecl-amqp php-dom php-fpm php-process php-pdo-dblib php-gd > /dev/null
+sudo yum install -y php php-mbstring php-bcmath php-mysqlnd php-pecl-imagick php-zip php-memcached php-soap php-opcache php-pecl-xdebug php-pecl-amqp php-dom php-fpm php-process php-pdo-dblib php-gd > /dev/null
 systemctl enable php-fpm
 info "Configure php"
 sed -i 's/user = apache/user = vagrant/g' /etc/php-fpm.d/www.conf

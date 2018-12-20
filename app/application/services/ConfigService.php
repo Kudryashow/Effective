@@ -14,10 +14,4 @@ use application\core\Service;
 
 class ConfigService extends Service
 {
-    private $_config = [];
-
-    public function getConfig($name)
-    {
-        return $this->_config[$name];
-    }
 }

@@ -17,8 +17,7 @@ class Dev
 
     static function extractFiles($dir)
     {
-        $result = array();
-
+        $result = [];
         $currentDir = scandir($dir);
         foreach ($currentDir as $key => $value) {
             if (!in_array($value, array(".", ".."))) {

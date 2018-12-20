@@ -19,4 +19,10 @@ class AclService extends Service
         return $this->_config[$name];
     }
 
+
+//    public function setConfig($name)
+//    {
+//        $arr = require __DIR__ . '/../acl/' . $name;
+//        return $arr;
+//    }
 }

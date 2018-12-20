@@ -7,6 +7,7 @@
  */
 
 namespace application\core;
+
 use application\lib\Dev;
 
 abstract class Service
@@ -14,23 +15,50 @@ abstract class Service
     private $_path;
     private $_config = [];
 
-    public function __construct()
+    public function __construct($path)
     {
-        $this->setRootDirectory(__DIR__ . '/../config');
+        $this->setRootDirectory($path);
         $files = Dev::extractFiles($this->_path);
         foreach ($files as $file) {
-            $name = preg_replace("/.php$/", "", $file);
-            $this->_config[$name] = $this->setConfig($file);
+            if (gettype($file) !== 'array') {
+                $name = preg_replace("/.php$/", "", $file);
+                $this->_config[$name] =
+                    $this->setConfig($this->_path.DIRECTORY_SEPARATOR.$file);
+            }
         }
     }
-    private function setConfig($name)
+
+    function setFilepath($files, $prefix = '')
     {
-        $arr = require __DIR__ . '/../config/' . $name;
-        return $arr;
+        $routes = [];
+        foreach ($files as $key => $file) {
+            if (gettype($file) === 'array') {
+
+                $routes[$key] = $this->
+                setFilepath($file, $key);
+            } else {
+                if ($prefix) {
+                    $routes[] = $prefix . DIRECTORY_SEPARATOR . $file;
+                } else {
+                    $routes[] = $file;
+                }
+            }
+        }
+        return $routes;
     }
+
     private function setRootDirectory($path)
     {
-        $this->_path = $path;
+        $this->_path = __DIR__.'/../'.$path;
     }
-    abstract public function getConfig($config);
+
+    private function setConfig($path)
+    {
+        $arr = require $path;
+        return $arr;
+    }
+
+    public function getConfig($config){
+        return $this->_config[$config];
+    }
 }

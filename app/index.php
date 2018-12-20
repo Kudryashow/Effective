@@ -2,10 +2,10 @@
 
 require 'vendor/autoload.php';
 //use application\core\Router;
-
+use application\core\Application;
 session_start();
-$config = new \application\services\ConfigService;
+$services = include 'init/services.php';
 //$router = new Router;
-$app = new \application\core\Application();
+$app = new Application($services);
 //$router->run();
 $app->run();

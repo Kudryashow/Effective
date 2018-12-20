@@ -8,22 +8,32 @@
 
 namespace application\core;
 
-//use application\core\Router;
-//use application\services\ConfigService;
-
-
 class Application
 {
-
-    public function __construct()
+    public $services = [];
+    public $router;
+    public function __construct($params)
     {
-//        $conf =
-//        $this->_router = new Router($conf);
+        if ($params['services']) {
+            $this->configurateServices($params['services']);
+        }
     }
 
     public function run()
     {
-//        $this->_router->run();
+        $this->router = new Router($this->getConfig('ConfigService', 'routes'));
+        $this->router->run();
+    }
+    public function getConfig($serviceName, $config)
+    {
+        return $this->services[$serviceName]->getConfig($config);
     }
 
+    private function configurateServices($config)
+    {
+       foreach ($config as $serviceName=>$serviceSettings) {
+           $this->services[$serviceName] =
+               new $serviceSettings['class']($serviceSettings['path']);
+       }
+    }
 }
